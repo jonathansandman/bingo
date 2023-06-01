@@ -43,4 +43,18 @@ describe("BingoCard", () => {
 		expect(card2.getWidth()).toBe(4);
 		expect(card2.getHeight()).toBe(3);
 	});
+
+	it("should correctly indicate a win", () => {
+		const card = new BingoCard(basicBingoCard);
+		const result = card.callNumbers([1, 4, 7]);
+		expect(result).toBe(true);
+	});
+
+	it("should correctly indicate a card has not won", () => {
+		const card = new BingoCard(basicBingoCard);
+		const result = card.callNumbers([
+			1, 5, 9
+		]);
+		expect(result).toBe(false);
+	});
 });
