@@ -87,4 +87,28 @@ describe("BingoCard", () => {
 			],
 		});
 	});
+
+	it("should handle inputs with a single line", () => {
+		const card = new BingoCard("1 2 3");
+		const result = card.callNumbers([0, 0, 2]);
+		expect(result).toEqual({
+			bingo: true,
+			numCalls: 3,
+			cardState: [["-", "2", "-"]],
+		});
+	});
+
+	it("should handle input with a single number", () => {
+		const card = new BingoCard("1");
+		expect(card.getCard()).toEqual([[1]]);
+		expect(card.getWidth()).toBe(1);
+		expect(card.getHeight()).toBe(1);
+
+		const result = card.callNumbers([1]);
+		expect(result).toEqual({
+			bingo: true,
+			numCalls: 1,
+			cardState: [["1"]],
+		});
+	});
 });
