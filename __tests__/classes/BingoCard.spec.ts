@@ -47,18 +47,44 @@ describe("BingoCard", () => {
 	it("should correctly indicate a column win", () => {
 		const card = new BingoCard(basicBingoCard);
 		const result = card.callNumbers([1, 4, 7]);
-		expect(result).toEqual({ bingo: true, numCalls: 3 });
+		expect(result).toEqual({
+			bingo: true,
+			numCalls: 3,
+			cardState: [
+				["1", "-", "-"],
+				["4", "-", "-"],
+				["7", "-", "-"],
+			],
+		});
 	});
 
 	it("should correctly indicate a row win", () => {
 		const card = new BingoCard(basicBingoCard);
 		const result = card.callNumbers([1, 2, 3]);
-		expect(result).toEqual({ bingo: true, numCalls: 3 });
+		expect(result).toEqual({
+			bingo: true,
+			numCalls: 3,
+			cardState: [
+				["1", "2", "3"],
+				["-", "-", "-"],
+				["-", "-", "-"],
+			],
+		});
 	});
 
-	it("should correctly indicate a card has not won", () => {
+	it("should correctly indicate that a card will never win", () => {
 		const card = new BingoCard(basicBingoCard);
-		const result = card.callNumbers([1, 5, 9]);
-		expect(result).toEqual({ bingo: false, numCalls: -1 });
+		const result = card.callNumbers([
+			1, 5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+		]);
+		expect(result).toEqual({
+			bingo: false,
+			numCalls: -1,
+			cardState: [
+				["1", "-", "-"],
+				["-", "5", "-"],
+				["-", "-", "9"],
+			],
+		});
 	});
 });

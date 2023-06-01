@@ -1,6 +1,7 @@
 interface IBingoResult {
 	bingo: boolean;
 	numCalls: number;
+	cardState: string[][];
 }
 
 export class BingoCard {
@@ -50,13 +51,21 @@ export class BingoCard {
 				return {
 					bingo: true,
 					numCalls: i + 1,
+					cardState: this.getCardState(calledNumbers),
 				};
 			}
 		}
 		return {
 			bingo: false,
 			numCalls: -1,
+			cardState: this.getCardState(calledNumbers),
 		};
+	}
+
+	private getCardState(calledNumbers: Set<number>): string[][] {
+		return this.card.map((row) =>
+			row.map((num) => (calledNumbers.has(num) ? num.toString() : "-"))
+		);
 	}
 
 	getCard(): number[][] {
