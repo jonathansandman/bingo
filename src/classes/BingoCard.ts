@@ -13,6 +13,8 @@ export class BingoCard {
 		return str
 			.trim()
 			.split("\n")
+			.map((line) => line.trim())
+			.filter((line) => line.length > 0)
 			.map((line) => {
 				return line
 					.trim()
@@ -34,7 +36,7 @@ export class BingoCard {
 			}
 		}
 
-		for (let colIndex = 0; colIndex < this.height; colIndex++) {
+		for (let colIndex = 0; colIndex < this.width; colIndex++) {
 			if (this.card.every((row) => calledNumbers.has(row[colIndex]))) {
 				return true;
 			}
