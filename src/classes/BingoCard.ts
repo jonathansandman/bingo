@@ -1,3 +1,8 @@
+interface IBingoResult {
+	bingo: boolean;
+	numCalls: number;
+}
+
 export class BingoCard {
 	private card: number[][];
 	private width: number;
@@ -22,7 +27,6 @@ export class BingoCard {
 	}
 
 	private checkHasBingo(calledNumbers: Set<number>): boolean {
-
 		for (let rowIndex = 0; rowIndex < this.height; rowIndex++) {
 			if (this.card[rowIndex].every((num) => calledNumbers.has(num))) {
 				return true;
@@ -38,15 +42,21 @@ export class BingoCard {
 		return false;
 	}
 
-	callNumbers(numbers: number[]): boolean {
+	callNumbers(numbers: number[]): IBingoResult {
 		const calledNumbers = new Set<number>();
 		for (let i = 0; i < numbers.length; i++) {
 			calledNumbers.add(numbers[i]);
 			if (this.checkHasBingo(calledNumbers)) {
-				return true
+				return {
+					bingo: true,
+					numCalls: i + 1,
+				};
 			}
 		}
-		return false;
+		return {
+			bingo: false,
+			numCalls: -1,
+		};
 	}
 
 	getCard(): number[][] {

@@ -39,7 +39,7 @@ export function main(input: string) {
 	const cards = cardsStr.map((x) => new BingoCard(x));
 	for (const card of cards) {
 		const result = card.callNumbers(numbersToCall);
-		console.log(`Bingo: ${result}`);
+		console.log(JSON.stringify(result, null, 4));
 	}
 }
 
