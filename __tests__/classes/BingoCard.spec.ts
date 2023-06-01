@@ -44,17 +44,21 @@ describe("BingoCard", () => {
 		expect(card2.getHeight()).toBe(3);
 	});
 
-	it("should correctly indicate a win", () => {
+	it("should correctly indicate a row win", () => {
 		const card = new BingoCard(basicBingoCard);
 		const result = card.callNumbers([1, 4, 7]);
-		expect(result).toBe(true);
+		expect(result).toEqual({ bingo: true, numCalls: 3 });
+	});
+
+	it("should correctly indicate a column win", () => {
+		const card = new BingoCard(basicBingoCard);
+		const result = card.callNumbers([1, 2, 3]);
+		expect(result).toEqual({ bingo: true, numCalls: 3 });
 	});
 
 	it("should correctly indicate a card has not won", () => {
 		const card = new BingoCard(basicBingoCard);
-		const result = card.callNumbers([
-			1, 5, 9
-		]);
-		expect(result).toBe(false);
+		const result = card.callNumbers([1, 5, 9]);
+		expect(result).toEqual({ bingo: false, numCalls: -1 });
 	});
 });
