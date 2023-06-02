@@ -33,7 +33,7 @@ const input2 = `
 2 0 12 3 7
 `;
 
-export function main(input: string) {
+export function playTheSquid(input: string) {
 	const [calledStr, ...cardsStr] = splitStringByEmptyLine(input);
 	const numbersToCall = calledStr.split(",").map((x) => parseInt(x, 10));
 	const cards = cardsStr.map((x) => new BingoCard(x));
@@ -47,7 +47,7 @@ export function main(input: string) {
 }
 
 console.log("[First task]");
-main(input1);
+playTheSquid(input1);
 
 console.log("[Second task]");
-main(input2);
+playTheSquid(input2);
