@@ -6,7 +6,7 @@
 - or use 'npm build' followed by 'npm run'.
 
 ## src/index.ts
-Main entry point. Prints info to use against the bingo-obsessed squid.
+Main entry point. Prints info to use to win against the bingo-obsessed squid. You should choose the result that has the least number of calls, to ensure that you win against the squid. Poor squid.
 
 ## src/classes/BingoCard.ts
 Class that encapsulates most of the main Bingo logic.
